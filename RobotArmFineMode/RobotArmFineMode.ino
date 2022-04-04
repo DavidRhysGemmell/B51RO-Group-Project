@@ -39,7 +39,7 @@ int x = 150; //Initalise End coordinates
 int y = 100;
 int z = 87;
 
-float phi = PI; // End posture of arm, in radians. Could be editable.
+float phi = -PI/2; // End posture of arm, in radians. Could be editable.
 
 float xp = 0;
 float zp = 0;
@@ -69,7 +69,7 @@ int Channel1Position = 90;
 int Channel2Position = 45;
 int Channel3Position = 45;
 int Channel3PrevPosition = 45;
-double MaxReach = sqrt(pow(l_1,2)+pow(l_2,2));
+double MaxReach = 300;
 double Current = 0;
 
 void setup() {
@@ -109,9 +109,9 @@ zp=z-l_3*sin(phi);
   theta_4= phi-theta_2-theta_3;
 
   //convert radians to degrees
-  theta_2deg= theta_2*180/PI;
-  theta_3deg= -theta_3*180/PI;
-  theta_4deg= (theta_4*180/PI)-90;
+  theta_2deg= 180-(theta_2*180/PI);
+  theta_3deg= 180+(theta_3*180/PI);
+  theta_4deg= -(theta_4*180/PI);
 
     Serial.print(" Theta 2: ");
   Serial.print(theta_2deg);
@@ -132,21 +132,21 @@ void MoveServo2(void){
   Serial.print(" Ch2: ");
   Serial.print(ch2.getAngle());
   Servo2Angle=theta_2deg;
-  Servo2.write(Servo2Angle);
+  Servo2.write(theta_2deg);
  
 }
 void MoveServo3(void){
     Serial.print(" Ch3: ");
   Serial.print(ch3.getAngle());
   Servo3Angle=theta_3deg;
-  Servo3.write(Servo3Angle);
+  Servo3.write(theta_3deg);
  
 }
 void MoveServo4(void){
       Serial.print(" Ch4: ");
   Serial.print(ch4.getAngle());
   Servo4Angle=theta_4deg;
-  Servo4.write(Servo4Angle);
+  Servo4.write(theta_4deg);
 }
 void MoveServo5(void){ //Rotate gripper
       Serial.print(" Ch5: ");
@@ -166,10 +166,10 @@ void CheckXAxis(void){
   CurrentReach();
   Channel2Position = ch2.getAngle();
   if (Channel2Position>=105){
-    if (Current<MaxReach){ //Hopefully doesn't freak out if x is decimal just below reach
+    if (Current+1<MaxReach){ //Hopefully doesn't freak out if x is decimal just below reach
     x=x+1;
     }
-  } else if (Channel2Position<=75 && x>RobotBody){
+  } else if (Channel2Position<=75 && x-1>RobotBody){
     x=x-1;
   }
   Serial.print(" X is ");
