@@ -69,7 +69,7 @@ int Channel1Position = 90;
 int Channel2Position = 45;
 int Channel3Position = 45;
 int Channel3PrevPosition = 45;
-double MaxReach = 300;
+double MaxReach = 295;
 double Current = 0;
 
 void setup() {
@@ -163,10 +163,14 @@ void MoveServo6(void){ //activate gripper
 
 
 void CheckXAxis(void){
-  CurrentReach();
+  
   Channel2Position = ch2.getAngle();
   if (Channel2Position>=105){
-    if (Current+1<MaxReach){ //Hopefully doesn't freak out if x is decimal just below reach
+    xp=x+1-l_3*cos(phi);
+    zp=z-l_3*sin(phi);
+    CurrentReach();
+    
+    if (Current<MaxReach){ //Hopefully doesn't freak out if x is decimal just below reach
     x=x+1;
     }
   } else if (Channel2Position<=75 && x-1>RobotBody){
@@ -182,15 +186,23 @@ void CheckZAxis(void){
   CurrentReach();
   
   Channel3Position = ch3.getAngle();
-  
+  if (abs(Channel3Position-Channel3PrevPosition)>3){
   if (Channel3Position<=Channel3PrevPosition){
      z=Channel3Position;
+     Channel3PrevPosition=Channel3Position;
   } else if (Channel3Position>Channel3PrevPosition && theta_3deg>0){
+        xp=x+1-l_3*cos(phi);
+    zp=Channel3Position-l_3*sin(phi);
+    CurrentReach();
+    if (Current<MaxReach){
     z=Channel3Position;
+    Channel3PrevPosition=Channel3Position;
+    }
   }
-  Channel3PrevPosition=Channel3Position;
+  
         Serial.print(" Z is ");
   Serial.print(z);
+}
 }
 
 
