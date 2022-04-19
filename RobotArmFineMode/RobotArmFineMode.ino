@@ -33,7 +33,7 @@ int Servo6Angle=0;
 double d_1 = 77.6; //Height to first joint
 int l_1=150; // Lenght of first arm
 int l_2=150;  // Length of second arm
-int l_3=50; // Length of third arm
+int l_3=150; // Length of third arm
 int RobotBody= 0; //
 int x = 150; //Initalise End coordinates
 int y = 100;
@@ -180,18 +180,20 @@ void CheckXAxis(void){
   Serial.print(x);
 }
 void CheckYAxis(void){
-Channel1Position = ch1.getAngle();
-if (Channel1Position>105 && y<=179){
+  Channel1Position = ch1.getAngle();
+ if (Channel1Position>=105 && y<180){
   y=y+1;
-} else if (Channel1Position<75 && y>=1 ) {
+ } else if (Channel1Position<=75 && y>0){
   y=y-1;
-}
+ }
+   Serial.print(" Y is ");
+  Serial.print(y);
 }
 void CheckZAxis(void){
   CurrentReach();
   
-  Channel3Position = ch3.getAngle();
-  if (abs(Channel3Position-Channel3PrevPosition)>5){
+  Channel3Position = ((3*ch3.getAngle())/2)-d_1; //gives reach to bottom to 270 up
+  if (abs(Channel3Position-Channel3PrevPosition)>8){
   if (Channel3Position<=Channel3PrevPosition){
      z=Channel3Position;
      Channel3PrevPosition=Channel3Position;
@@ -205,9 +207,10 @@ void CheckZAxis(void){
     }
   }
   
+
+}
         Serial.print(" Z is ");
   Serial.print(z);
-}
 }
 
 
