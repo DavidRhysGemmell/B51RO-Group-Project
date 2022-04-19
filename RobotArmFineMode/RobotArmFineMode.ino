@@ -180,20 +180,18 @@ void CheckXAxis(void){
   Serial.print(x);
 }
 void CheckYAxis(void){
-  Channel1Position = ch1.getAngle();
- if (Channel1Position>=105 && y<180){
+Channel1Position = ch1.getAngle();
+if (Channel1Position>105 && y<=179){
   y=y+1;
- } else if (Channel1Position<=75 && y>0){
+} else if (Channel1Position<75 && y>=1 ) {
   y=y-1;
- }
-   Serial.print(" Y is ");
-  Serial.print(y);
+}
 }
 void CheckZAxis(void){
   CurrentReach();
   
-  Channel3Position = ((3*ch3.getAngle())/2)-d_1; //gives reach to bottom to 270 up
-  if (abs(Channel3Position-Channel3PrevPosition)>15){
+  Channel3Position = ch3.getAngle();
+  if (abs(Channel3Position-Channel3PrevPosition)>5){
   if (Channel3Position<=Channel3PrevPosition){
      z=Channel3Position;
      Channel3PrevPosition=Channel3Position;
@@ -207,10 +205,9 @@ void CheckZAxis(void){
     }
   }
   
-
-}
         Serial.print(" Z is ");
   Serial.print(z);
+}
 }
 
 
