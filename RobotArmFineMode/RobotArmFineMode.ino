@@ -30,7 +30,7 @@ int Servo5Angle=0;
 int Servo6Angle=0;
 
 
-double d_1 = 77.6; //Height to first joint
+double d_1 = 200; //Height to first joint
 int l_1=150; // Lenght of first arm
 int l_2=150;  // Length of second arm
 int l_3=150; // Length of third arm
