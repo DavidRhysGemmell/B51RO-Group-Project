@@ -140,12 +140,7 @@ void MoveServo4(void){
   Servo4Angle=theta_4deg;
   Servo4.write(theta_4deg);
 }
-void MoveServo5(void){ //Rotate gripper
 
-}
-void MoveServo6(void){ //activate gripper
-
-  }
 
 
 void StartPosition(void) {
@@ -202,6 +197,12 @@ void Move(void){
 
 }
 
+void OpenGripper(void){
+  Servo6.write(0);
+}
+void CloseGripper(void){
+  Servo6.write(180);
+}
 
 void loop() {
 phi = -PI/2;
@@ -218,7 +219,7 @@ Servo6.write(25);
  OnPin();
  Move();
  delay(500);
-  Servo6.write(180);
+  CloseGripper();
  delay(500);
  AboveAbovePin();
  Move();
@@ -229,7 +230,7 @@ Servo6.write(25);
  InHolder();
  Move();
  delay(500);
- Servo6.write(0);
+ OpenGripper();
  delay(500);
  Face();
  Move();
@@ -241,5 +242,37 @@ Servo6.write(25);
  Servo5.write(150);
  Servo6.write(40);
 delay(5000);
+Servo5.write(135);
+Servo6.write(25);
+AboveHolder();
+Move();
+delay(1000);
+InHolder();
+Move();
+delay(500);
+CloseGripper();
+delay(500);
+AboveHolder();
+Move();
+delay(500);
+AboveAbovePin();
+Move();
+delay(2000);
+OnPin();
+Move();
+delay(500);
+OpenGripper();
+delay(500);
+ Face();
+ Move();
+ delay(500);
+ Grin();
+ Move();
+ Servo4.write(0);
+ delay(500);
+ Servo5.write(150);
+ Servo6.write(40);
+delay(5000);
+
 
 }
