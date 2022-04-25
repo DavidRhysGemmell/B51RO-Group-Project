@@ -2,22 +2,21 @@ close all
 clear all
 %-------------------------------------
 %Inverse kinematics fo Spatial 3R robot
-% used in Module B50RM
-%Author: Xianwen Kong
-% Date 12-01-2010
+%Author: David Rhys Gemmell
+% Date 25/04/2022
 %-------------------------------------
 % List of functions used: atan2, sqrt, sin, cos, plot
 % for help on the above funstions please use help followed by the function.
 %input link parameter
-d_1=77;
+d_1=150;
 l_1=150;
 l_2=150;
-l_3=50;
+l_3=150;
 
 %input the pose of the endeffector
-x=150;
-y=50;
-z=50;
+x=180;
+y=0;
+z=0;
 phi=pi;
 
 x4=x;
