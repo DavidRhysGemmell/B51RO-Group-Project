@@ -1,14 +1,14 @@
 close all
 clear all
-d_1=77;
+d_1=150;
 l_1=150;
 l_2=150;
-l_3=50;
-phi=pi;
-theta_1 = 1.153747084806411; %input theta_1
-theta_2 = 1.898538551827188;
-theta_3 = -2.354254023099021;
-theta_4 = 3.597308124861626;
+l_3=150;
+phi=-pi/2;
+theta_1 = 0; %input theta_1
+theta_2 = 75*pi/180;
+theta_3 = 22*pi/180;
+theta_4 = 90*pi/180;
 %---------------------------------------------------------
 %plot the robot based on forward kinematics
 %---------------------------------------------------------
@@ -18,7 +18,7 @@ O_1y=0;
 O_1z=0;
 O_2x=0;
 O_2y=0;
-O_2z=d_1;
+O_2z=0;
 O_3x=O_2x+l_1*cos(theta_2)*cos(theta_1);
 O_3y=O_2y+l_1*cos(theta_2)*sin(theta_1);
 O_3z=O_2z+l_1*sin(theta_2);
