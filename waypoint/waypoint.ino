@@ -242,37 +242,7 @@ Servo6.write(25);
  Servo5.write(150);
  Servo6.write(40);
 delay(5000);
-Servo5.write(135);
-Servo6.write(25);
-AboveHolder();
-Move();
-delay(1000);
-InHolder();
-Move();
-delay(500);
-CloseGripper();
-delay(500);
-AboveHolder();
-Move();
-delay(500);
-AboveAbovePin();
-Move();
-delay(2000);
-OnPin();
-Move();
-delay(500);
-OpenGripper();
-delay(500);
- Face();
- Move();
- delay(500);
- Grin();
- Move();
- Servo4.write(0);
- delay(500);
- Servo5.write(150);
- Servo6.write(40);
-delay(5000);
+
 
 
 }
